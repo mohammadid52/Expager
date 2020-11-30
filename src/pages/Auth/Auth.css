@@ -1,0 +1,106 @@
+section.auth {
+  height: 100vh;
+  width: 100vw;
+  background: -webkit-linear-gradient(90deg, rgb(96, 71, 243), rgb(173, 79, 244));
+  background: linear-gradient(90deg, rgb(96, 71, 243), rgb(173, 79, 244));
+  display: grid;
+  place-items: center;
+  transition: background 1s ease-in-out;
+}
+section.auth.inverted {
+  background: -webkit-linear-gradient(90deg, rgb(173, 79, 244)), rgb(96, 71, 243);
+  background: linear-gradient(90deg, rgb(173, 79, 244), rgb(96, 71, 243));
+}
+
+section.auth .main {
+  border-radius: 10px;
+  height: 80vh;
+  width: 80vw;
+  display: grid;
+  place-items: center;
+  background: -webkit-linear-gradient(48deg, rgb(26, 36, 87), rgb(47, 26, 87));
+  background: linear-gradient(48deg, rgb(26, 36, 87), rgb(47, 26, 87));
+}
+section.auth.inverted .main {
+  background: -webkit-linear-gradient(48deg, rgb(47, 26, 87), rgb(26, 36, 87));
+  background: linear-gradient(48deg, rgb(47, 26, 87), rgb(26, 36, 87));
+}
+
+.auth .main .content {
+  width: 450px;
+}
+.main .content h4 {
+  color: #fff;
+  text-align: center;
+  font-size: 27px;
+  text-transform: uppercase;
+}
+.main .content p {
+  text-align: center;
+  color: #fff;
+  font-size: 18px;
+}
+.content .logo {
+  text-align: center;
+}
+.content .logo img {
+  height: 100px;
+}
+.form-container {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-control {
+  margin-bottom: 20px;
+  width: 80%;
+}
+.password-field {
+  margin-bottom: 20px;
+}
+
+.form-control .label {
+  font-size: 15px;
+  color: #9d9dae;
+  font-weight: 400;
+}
+.form-control input {
+  height: 30px;
+  width: 100%;
+  outline: none;
+  background: transparent;
+  border: none;
+  font-size: 17px;
+  border-bottom: 1px solid #eee;
+  color: #fff;
+  transition: border 0.3s linear;
+  padding: 1.5rem 1rem;
+}
+
+.form-container input:focus {
+  border-bottom: 1px solid rgb(96, 71, 243);
+}
+
+.form-container input::placeholder {
+  color: #f4f5f9;
+  opacity: 0.4;
+}
+
+@media (max-width: 600px) and (min-width: 480px) {
+  .auth .main .content {
+    width: 350px;
+  }
+}
+@media (max-width: 479px) and (min-width: 200px) {
+  .auth .main .content {
+    width: 250px;
+  }
+}
+
+.footer p {
+  color: #f4f5f9;
+  opacity: 0.4;
+  margin-top: 20px;
+  font-size: 13px !important;
+}

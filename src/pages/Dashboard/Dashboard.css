@@ -1,0 +1,64 @@
+.dashboard-container {
+  display: flex;
+  width: 100%;
+}
+.dashboard-container .left-side {
+  width: 50%;
+}
+.dashboard-container .right-side {
+  width: 50%;
+}
+.add-wallet-bal {
+  /*card*/
+  height: 250px;
+  width: 450px;
+  padding: 1rem;
+}
+
+.add-bal-title {
+  font-size: 20px;
+}
+
+.form {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.form .input-number {
+  width: 100%;
+}
+.form .min-max-values {
+  margin: 0.5rem 0;
+  color: #bbb;
+  display: flex;
+  justify-content: space-between;
+}
+.form .dashboard-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.form .dashboard-actions button {
+  height: 30px;
+  cursor: pointer;
+  width: 80px;
+  border-radius: 7px;
+  background-color: #316cd3;
+  color: #fff;
+  text-transform: uppercase;
+  transition: var(--transition);
+}
+
+.form .dashboard-actions button:nth-child(1) {
+  background-color: #bbbfca;
+}
+.form .dashboard-actions button:nth-child(1):hover {
+  box-shadow: 0 2px 10px -3px #bbbfca;
+}
+.form .dashboard-actions button:hover {
+  box-shadow: 0 2px 10px -3px #316cd3;
+}
+.form .dashboard-actions button:focus,
+.form .dashboard-actions button:nth-child(1):focus {
+  box-shadow: none;
+}

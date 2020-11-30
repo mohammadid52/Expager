@@ -1,0 +1,25 @@
+{
+	"Wrapper": {
+	  "scope": "javascript, typescript",
+	  "prefix": "wrapper",
+	  "body": [
+		"import React from 'react'",
+		"import styled from 'styled-components'",
+		
+		"const ${TM_FILENAME_BASE} = () => {",
+			"return (",
+				"<Wrapper>",
+		
+				"</Wrapper>",
+			")",
+		"}",
+		
+		
+		"const Wrapper = styled.div``",
+		
+		"export default ${TM_FILENAME_BASE}",
+	  ],
+	  "description": "Use Effect Snippet"
+	}
+  }
+  

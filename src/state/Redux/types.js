@@ -1,0 +1,13 @@
+export const LOGIN = 'LOGIN';
+export const LOGIN_ERR = 'LOGIN_ERR';
+export const SIGNUP_ERR = 'SIGNUP_ERR';
+export const SIGNUP = 'SIGNUP';
+export const LOGOUT = 'LOGOUT';
+export const START_LOADING = 'START_LOADING';
+export const STOP_LOADING = 'STOP_LOADING';
+export const CHANGE_USERNAME = 'CHANGE_USERNAME';
+export const CHANGE_USERNAME_ERR = 'CHANGE_USERNAME_ERR';
+export const SIDEBAR_MIN_ON = 'SIDEBAR_MIN_ON';
+export const SIDEBAR_MIN_OFF = 'SIDEBAR_MIN_OFF';
+export const ADD_BALANCE = 'ADD_BALANCE';
+export const ADD_BALANCE_ERR = 'ADD_BALANCE_ERR';

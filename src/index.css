@@ -1,0 +1,141 @@
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --clr-primary-1: #ff737a;
+  --clr-primary-2: #fa4659;
+  --clr-secondary-1: #e7f6ea;
+  --clr-secondary-2: #c6f1e7;
+  --clr-secondary-3: #11cbd7;
+  --clr-primary-3: #ff824d;
+  --clr-primary-4: #ff5722;
+  --clr-secondary-4: #eeeeee;
+  --clr-secondary-5: #00adb5;
+  --clr-dark-1: #303841;
+  --clr-other-1: #41292c;
+  --clr-other-2: #792359;
+  --clr-other-3: #d72483;
+  --clr-other-4: #fd3e81;
+  --transition: all 0.2s ease;
+  --transition-2: all 0.4s ease;
+  --transition-3: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+  --spacing: 0.1rem;
+  --radius: 0.25rem;
+  --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  --max-width: 1170px;
+  --fixed-width: 620px;
+  --clr-grey-1: hsl(209, 61%, 16%);
+  --clr-grey-10: #f5f6fa;
+  --light-font: light, 'sans-serif';
+  --medium-font: medium, 'sans-serif';
+  --primary-font: 'Chivo', sans-serif;
+  --sidebar-list-bg: #316cd3;
+  --bold-font: bold, 'sans-serif';
+  --sidebar-width: 270px;
+  --sidebar-min-width: 80px;
+  --height: 100vh;
+  --font-clr: #4b4e56;
+}
+
+body {
+  font-family: var(--primary-font);
+  background-color: #fff;
+  color: var(--clr-grey-1);
+  line-height: 1.5;
+  font-size: 0.875rem;
+}
+@font-face {
+  font-family: primary;
+  src: url('./assets/fonts/Steradian\ Regular.otf');
+}
+@font-face {
+  font-family: medium;
+  src: url('./assets/fonts/Steradian\ Medium.otf');
+}
+@font-face {
+  font-family: light;
+  src: url('./assets/fonts/Steradian\ Light.otf');
+}
+@font-face {
+  font-family: bold;
+  src: url('./assets/fonts/Steradian\ Bold.otf');
+}
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+}
+
+section {
+  padding: 1rem 0;
+  position: relative;
+  transition: var(--transition-2);
+}
+
+section.content {
+  background-color: #f6f7fb;
+  width: 100%;
+  height: 100vh;
+  padding-left: 350px;
+  transition: var(--transition-3);
+}
+section.maxified-content {
+  padding-left: 170px !important;
+}
+
+.section-center {
+  width: 90vw;
+  margin: 0 auto;
+  max-width: 1170px;
+}
+
+.btn-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.btn {
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  text-transform: uppercase;
+  height: 40px;
+  width: 150px;
+  font-weight: 700;
+  color: rgb(26, 36, 87);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.btn:hover {
+  background-color: #bbbfca;
+}
+
+@media (max-width: 800px) and (min-width: 500px) {
+  .sidebar-wrapper {
+    display: none;
+  }
+}
+
+button {
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.12);
+}
+.page-title {
+  color: #14274e;
+  font-size: 40px;
+  margin-bottom: 1rem;
+}
