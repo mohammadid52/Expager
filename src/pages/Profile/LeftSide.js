@@ -1,5 +1,6 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/jsx-one-expression-per-line */
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import './Profile.css';
 import { AiOutlineSave } from 'react-icons/ai';
@@ -7,13 +8,14 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Input } from '../../UI';
 import { useForm } from '../../hooks';
-import { getLoader } from '../../helpers';
-import { authActions } from '../../state/Redux';
+import { getLocalAuthState } from '../../helpers';
+import { otherActions } from '../../state/Redux';
 
-const LeftSide = ({ data: { details, uid, displayName } }) => {
-  const { loading } = useSelector((state) => getLoader(state));
+const LeftSide = ({ wallet }) => {
+  const { uid, displayName, details } = wallet;
+
+  const { loading } = useSelector((state) => getLocalAuthState(state));
   const [error, setError] = useState('');
-
   const { values, handleInput } = useForm({
     username: displayName,
   });
@@ -30,6 +32,7 @@ const LeftSide = ({ data: { details, uid, displayName } }) => {
   const charactersLeft = length.max - usernameLength;
   const isMinLength = usernameLength >= length.min;
   const shouldChangeUsername = charactersLeft >= 0;
+
   const inputBorderClass = () => {
     if (error || !shouldChangeUsername) {
       return 'field errorBorder';
@@ -55,17 +58,22 @@ const LeftSide = ({ data: { details, uid, displayName } }) => {
 
     setError('');
     inputBorderClass();
+    const dataToSend = {
+      username,
+      uid,
+      details,
+    };
 
-    dispatch(authActions.changeUsername(username, uid, details));
+    dispatch(otherActions.changeUsername(dataToSend));
   };
 
   const actionHandler = shouldChangeUsername ? handleChangeUsername : null;
   const saveBtnText = loading ? '•' : <AiOutlineSave />;
 
   return (
-    <div className="left">
+    <div className="left-profile">
       <div className="heading">
-        <h1>Hello {details.displayName}</h1>
+        <h1>Hello {details.displayName || 'Human'}</h1>
         <p>Have a nice day at work 😊</p>
       </div>
       <div className="form">
@@ -107,9 +115,22 @@ const LeftSide = ({ data: { details, uid, displayName } }) => {
             </div>
           </div>
         </div>
+        <p className="small-heading">Other</p>
+        <div className="card dummy" />
       </div>
     </div>
   );
+};
+
+LeftSide.propTypes = {
+  wallet: PropTypes.shape({
+    details: PropTypes.shape({
+      changesLeft: PropTypes.number.isRequired,
+      displayName: PropTypes.string.isRequired,
+    }).isRequired,
+    displayName: PropTypes.any.isRequired,
+    uid: PropTypes.any.isRequired,
+  }).isRequired,
 };
 
 export default LeftSide;

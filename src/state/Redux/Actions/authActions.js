@@ -61,30 +61,4 @@ const stopLoader = () => (dispatch) => {
   dispatch({ type: types.STOP_LOADING });
 };
 
-const changeUsername = (newUsername, uid, data) => async (dispatch) => {
-  dispatch({ type: types.START_LOADING });
-
-  try {
-    const { currentUser } = firebase.auth();
-    await currentUser.updateProfile({
-      displayName: newUsername,
-    });
-    userRef
-      .doc(uid)
-      .collection('details')
-      .doc(data.id)
-      .update({
-        ...data,
-        displayName: newUsername,
-        changesLeft: data.changesLeft - 1,
-      });
-
-    dispatch({ type: types.CHANGE_USERNAME, msg: 'Username changed successfully' });
-  } catch (error) {
-    dispatch({ type: types.CHANGE_USERNAME_ERR, err: error.message });
-  } finally {
-    dispatch({ type: types.STOP_LOADING });
-  }
-};
-
-export { login, signUp, logOut, startLoader, stopLoader, changeUsername };
+export { login, signUp, logOut, startLoader, stopLoader };

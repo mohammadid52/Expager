@@ -1,18 +1,30 @@
 import React from 'react';
-import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-const RightSide = () => (
-  <Right className="right">
-    <p className="small-heading">Your Earnings</p>
-    <div className="card earnings" />
-  </Right>
-);
+import { getNoDataClass } from '../../helpers';
 
-const Right = styled.div`
-  margin-left: 4rem;
-  .earnings {
-    height: 250px;
-  }
-`;
+const RightSide = ({ wallet }) => {
+  const { details } = wallet;
+
+  return (
+    <div className="right-profile">
+      <p className="small-heading">Your Earnings</p>
+      <div className={`card expenses ${getNoDataClass(details) ? 'no-data' : ''}`}>
+        {getNoDataClass(details) && <p>No Data</p>}
+      </div>
+      <p className="small-heading">Your Expenses</p>
+
+      <div className={`card earnings ${getNoDataClass(details, true) ? 'no-data' : ''}`}>
+        {getNoDataClass(details, true) && <p>No Data</p>}
+      </div>
+    </div>
+  );
+};
+
+RightSide.propTypes = {
+  wallet: PropTypes.shape({
+    details: PropTypes.any.isRequired,
+  }).isRequired,
+};
 
 export default RightSide;

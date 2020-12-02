@@ -1,22 +1,40 @@
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
+import { NotificationManager } from 'react-notifications';
 import * as types from '../types';
 
-const initialState = {};
-const toastConfig = {
-  position: 'top-center',
-  autoClose: 4000,
-  hideProgressBar: true,
-  pauseOnHover: true,
-  draggable: true,
+const initialState = {
+  loading: false,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case types.ADD_BALANCE:
-      toast.success(action.msg, toastConfig);
+    case types.WALLET_LOADER_ON:
+      return {
+        ...state,
+        loading: true,
+      };
+    case types.SET_DETAILS:
+      return {
+        ...state,
+        data: action.data,
+      };
+    case types.WALLET_LOADER_OFF:
+      return {
+        ...state,
+        loading: false,
+      };
+
+    case types.CREATE_WALLET:
+      NotificationManager.success(action.msg, 'Wallet', 3000);
       return state;
-    case types.ADD_BALANCE_ERR:
-      toast.error(action.err, toastConfig);
+    case types.CREATE_WALLET_ERR:
+      NotificationManager.error(action.err, 'Wallet', 5000);
+      return state;
+    case types.ADD_EXPENSE_TO_WALLET:
+      NotificationManager.success(action.msg, 'Wallet', 3000);
+      return state;
+    case types.ADD_EXPENSE_TO_WALLET_ERR:
+      NotificationManager.error(action.err, 'Wallet', 5000);
       return state;
 
     default:

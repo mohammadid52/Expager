@@ -1,29 +1,31 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { getOtherValues, getLoader } from '../../helpers';
+import { getOtherValues, getLocalAuthState } from '../../helpers';
 import { useForm } from '../../hooks';
 import { walletActions } from '../../state/Redux';
 import { Input } from '../../UI';
 import './Dashboard.css';
 
-const Dashboard = ({ data: { uid, details, isDataLoaded, isAccountCreated } }) => {
+const Dashboard = ({ data }) => {
+  const dispatch = useDispatch();
+
+  const { uid, isAccountCreated, details } = data;
   const { values, handleInput, resetField } = useForm({
     number: 1,
   });
 
-  const dispatch = useDispatch();
-
   const { isSidebarMin } = useSelector((state) => getOtherValues(state));
-  const { loading } = useSelector((state) => getLoader(state));
+  const { loading } = useSelector((state) => getLocalAuthState(state));
 
   const handleCreateWalletAccount = () => {
-    const data = {
+    const dataToCreateWallet = {
       uid,
       detailsData: details,
       walletBalanceValue: values.number,
     };
-    dispatch(walletActions.createWalletAccount(data));
+    dispatch(walletActions.createWalletAccount(dataToCreateWallet));
   };
 
   return (
@@ -31,7 +33,7 @@ const Dashboard = ({ data: { uid, details, isDataLoaded, isAccountCreated } }) =
       <h1 className="page-title">Dashboard</h1>
       <div className="dashboard-container">
         <div className="left-side">
-          {isDataLoaded && !isAccountCreated && (
+          {!isAccountCreated && (
             <>
               {' '}
               <p className="small-heading">Add Balance</p>
@@ -52,11 +54,7 @@ const Dashboard = ({ data: { uid, details, isDataLoaded, isAccountCreated } }) =
                     <p className="max-bal">Max: 999999</p>
                   </div>
                   <div className="dashboard-actions">
-                    <button
-                      disabled={loading}
-                      type="button"
-                      onClick={() => resetField('number', 'number')}
-                    >
+                    <button disabled={loading} type="button" onClick={resetField}>
                       reset
                     </button>
                     <button disabled={loading} type="button" onClick={handleCreateWalletAccount}>
@@ -77,6 +75,17 @@ const Dashboard = ({ data: { uid, details, isDataLoaded, isAccountCreated } }) =
       </div>
     </Wrapper>
   );
+};
+
+Dashboard.propTypes = {
+  data: PropTypes.shape({
+    details: PropTypes.any.isRequired,
+    other: PropTypes.shape({
+      isAccountCreated: PropTypes.any.isRequired,
+      isDataLoaded: PropTypes.any.isRequired,
+      uid: PropTypes.any.isRequired,
+    }).isRequired,
+  }).isRequired,
 };
 const Wrapper = styled.section``;
 

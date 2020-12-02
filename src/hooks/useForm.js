@@ -7,9 +7,8 @@ const useForm = (initialValue) => {
     setValue({ ...values, [e.target.name]: e.target.value });
   };
 
-  const resetField = (fieldName, type) => {
-    const resetValue = type === 'number' ? 1 : '';
-    setValue({ ...values, [fieldName]: resetValue });
+  const resetField = () => {
+    setValue(initialValue);
   };
   return {
     handleInput,

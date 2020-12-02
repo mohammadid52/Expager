@@ -10,6 +10,7 @@ import { rrfConfig } from './config';
 import firebase from './firebase';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthWrapper } from './pages';
+import 'react-notifications/lib/notifications.css';
 
 const rrfProps = {
   firebase,

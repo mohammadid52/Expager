@@ -2,14 +2,15 @@ button.floating-btn {
   height: 70px;
   width: 70px;
   position: fixed;
-  bottom: 40px;
-  right: 40px;
+  bottom: 0;
+  right: 0;
   cursor: pointer;
   z-index: 999999;
   background-color: #fff;
   border-radius: 50%;
   box-shadow: var(--light-shadow);
   transition: var(--transition);
+  margin: 4rem;
 }
 button.floating-btn:hover {
   background-color: #e8e8e8;

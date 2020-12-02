@@ -1,19 +1,33 @@
+/* eslint-disable implicit-arrow-linebreak */
+import PropTypes from 'prop-types';
 import React from 'react';
-import styled from 'styled-components';
 import { useSelector } from 'react-redux';
+
 import { getOtherValues } from '../../helpers';
-import { useForm } from '../../hooks';
-import { Input } from '../../UI';
+import AddExpense from './AddExpense';
+import ExpenseList from './ExpenseList';
 import './Expense.css';
 
-const Expense = () => {
-  //   const { values, handleInput, resetField } = useForm({
-  //     number: 1,
-  //   });
+const Expense = ({ data }) => {
   const { isSidebarMin } = useSelector((state) => getOtherValues(state));
 
-  return <Wrapper className={`${isSidebarMin ? 'maxified-content' : ''} content`} />;
+  return (
+    <section className={`${isSidebarMin ? 'maxified-content' : ''} content expense-container`}>
+      <h1 className="page-title">Expenses</h1>
+      <div className="card expense no-data">
+        <div>
+          <div>No Data</div>
+          <div>Add expense to see data</div>
+        </div>
+      </div>
+      <ExpenseList wallet={data} />
+      <AddExpense wallet={data} />
+    </section>
+  );
 };
-const Wrapper = styled.section``;
+
+Expense.propTypes = {
+  data: PropTypes.any.isRequired,
+};
 
 export default Expense;

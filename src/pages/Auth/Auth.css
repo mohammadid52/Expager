@@ -104,3 +104,11 @@ section.auth.inverted .main {
   margin-top: 20px;
   font-size: 13px !important;
 }
+
+.btn-container .btn {
+  background-color: #fff;
+  transition: var(--transition);
+}
+.btn-container .btn:hover {
+  background-color: #bbb;
+}

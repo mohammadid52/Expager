@@ -9,34 +9,28 @@ button,
 .field {
   font-family: 'Poppins', sans-serif;
 }
-.profile .left {
+.left-profile {
   width: 50%;
 }
-.profile .right {
-  width: 50%;
-}
-.left .heading h1 {
+
+.left-profile .heading h1 {
   font-size: 40px;
   font-weight: 500;
   letter-spacing: 1px;
 }
-.left .heading p {
+.left-profile .heading p {
   font-size: 17px;
   font-weight: 400;
 }
 
-.left .form {
+.left-profile .form {
   margin-top: 5rem;
-}
-.small-heading {
-  font-size: 13px;
-  color: #bbbbbb;
-  margin-bottom: 10px;
 }
 
 .form .form_card {
   height: auto;
   padding: 2rem;
+  margin-bottom: 2rem;
 }
 .form_card .form_field_container {
   margin: 30px 0;
@@ -47,6 +41,10 @@ button,
 }
 .field {
   width: 95%;
+}
+
+.left-profile .dummy {
+  height: 200px;
 }
 
 .form_field_container p {
@@ -84,4 +82,20 @@ button:focus {
 }
 .error-text {
   color: #ea2c62 !important;
+}
+
+/* Left Side CSS */
+
+.right-profile {
+  width: 50%;
+  margin: 2rem;
+}
+.right-profile .earnings {
+  margin-bottom: 2rem;
+  height: 200px;
+}
+.right-profile .expenses {
+  margin-bottom: 2rem;
+  height: 48%;
+  overflow: scroll;
 }

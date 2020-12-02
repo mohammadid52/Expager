@@ -5,10 +5,10 @@ import logo from '../../assets/svg/logo2.svg';
 import './Auth.css';
 import { useForm } from '../../hooks';
 import { authActions } from '../../state/Redux';
-import { getLoader } from '../../helpers';
+import { getLocalAuthState } from '../../helpers';
 
 const SignUp = () => {
-  const { loading } = useSelector((state) => getLoader(state));
+  const { loading } = useSelector((state) => getLocalAuthState(state));
 
   const { values, handleInput } = useForm({
     username: '',
