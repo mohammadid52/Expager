@@ -18,9 +18,11 @@ const InputField = styled.input`
   padding: 0 10px;
   font-size: 17px;
   color: hsl(209, 61%, 16%);
-  transition: all 0.3s linear;
+  transition: all 0.2s linear;
   border: 1px solid #ebebeb;
   border-radius: 6px;
+  font-family: var(--input-font);
+  font-weight: 400;
 
   :focus {
     outline: none;
@@ -30,6 +32,8 @@ const InputField = styled.input`
   ::placeholder {
     color: #000;
     opacity: 0.1;
+    font-family: var(--input-font);
+    font-weight: 400;
   }
 `;
 

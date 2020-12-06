@@ -1,22 +1,15 @@
+/* eslint-disable newline-per-chained-call */
+/* eslint-disable implicit-arrow-linebreak */
 import * as types from '../types';
 import firebase from '../../../firebase';
 
 const switchSidebar = () => (dispatch) => {
-  dispatch({ type: types.SIDEBAR_MIN_ON });
+  dispatch({ type: types.SWITCH_SIDEBAR });
 };
-const userRef = firebase.firestore().collection('users');
 
-const getDataValue = (wallet, isExpense = true) => {
-  switch (isExpense) {
-    case true:
-      return wallet.account.totalExpenses;
-    case false:
-      return wallet.account.totalEarnings;
+const getDetailsRef = (uid, id) =>
+  firebase.firestore().collection('users').doc(uid).collection('details').doc(id);
 
-    default:
-      return wallet.account.totalEarnings;
-  }
-};
 const changeUsername = (data) => async (dispatch) => {
   const { username, uid, details } = data;
   dispatch({ type: types.START_LOADING });
@@ -26,15 +19,12 @@ const changeUsername = (data) => async (dispatch) => {
     await currentUser.updateProfile({
       displayName: username,
     });
-    userRef
-      .doc(uid)
-      .collection('details')
-      .doc(details.id)
-      .update({
-        ...details,
-        displayName: username,
-        changesLeft: details.changesLeft - 1,
-      });
+    const detailsRef = getDetailsRef(uid, details.id);
+    detailsRef.update({
+      ...details,
+      displayName: username,
+      changesLeft: details.changesLeft - 1,
+    });
 
     dispatch({ type: types.CHANGE_USERNAME, msg: 'Username changed successfully' });
   } catch (error) {
@@ -43,4 +33,13 @@ const changeUsername = (data) => async (dispatch) => {
     dispatch({ type: types.STOP_LOADING });
   }
 };
-export { switchSidebar, getDataValue, changeUsername };
+
+const changeProfile = (data, profileImgId) => {
+  const { details, uid } = data;
+  const detailsRef = getDetailsRef(uid, details.id);
+  detailsRef.update({
+    ...details,
+    profileImgId,
+  });
+};
+export { changeUsername, changeProfile, switchSidebar };

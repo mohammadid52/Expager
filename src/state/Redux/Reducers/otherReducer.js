@@ -7,7 +7,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case types.SIDEBAR_MIN_ON:
+    case types.SWITCH_SIDEBAR:
       return {
         ...state,
         isSidebarMin: !state.isSidebarMin,

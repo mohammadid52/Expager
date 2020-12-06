@@ -1,0 +1,119 @@
+.quick-data-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+circle {
+  transition: stroke-dashoffset 0.35s;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+.progress-circle svg {
+  filter: drop-shadow(7px 7px 4px #e7dede);
+}
+.progress-circle {
+  width: 40%;
+}
+
+.right-profile .quick-earnings {
+  margin-bottom: 2rem;
+  height: 170px;
+}
+.right-profile .quick-expenses {
+  margin-bottom: 2rem;
+  height: 170px;
+}
+
+.quick-data {
+  width: 50%;
+}
+.quick-data .last-expense {
+  font-size: 14px;
+  color: #bbb;
+}
+.quick-data .last-expense span {
+  border-bottom: 1px solid #aaa;
+  color: #aaaaaa;
+  cursor: pointer;
+}
+
+.quick-data .total-expense {
+  font-size: 19px;
+  color: var(--orange);
+  margin-bottom: 0.5rem;
+}
+
+.quick-data p {
+  text-transform: capitalize;
+  font-family: var(--input-font);
+}
+.right-profile .quick-wallet {
+  display: grid;
+  place-items: center;
+  height: 150px;
+  padding: 1rem;
+}
+.quick-wallet-total {
+  font-size: 17px;
+  font-family: var(--input-font);
+  color: #bbb;
+  text-transform: capitalize;
+}
+
+.quick-wallet-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+}
+.activity-ratio {
+  display: flex;
+  flex-direction: column;
+}
+.quick-wallet-total span {
+  color: #bbb;
+}
+.quick-wallet-total span.Less {
+  color: var(--error-clr);
+}
+.quick-wallet-total span.More {
+  color: var(--success-clr);
+}
+.quick-data-guide {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.quick-data-guide-expense div,
+.quick-data-guide-earnings div {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  margin-right: 7px;
+}
+
+.quick-data-guide-expense p,
+.quick-data-guide-earnings p {
+  color: var(--light-text);
+}
+
+.quick-data-guide-earnings,
+.quick-data-guide-expense {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+}
+
+.quick-data-guide-expense div {
+  background-color: var(--orange);
+}
+.quick-data-guide-earnings div {
+  background-color: var(--blue);
+}
+
+.quick-wallet-bal {
+  color: var(--blue) !important;
+}

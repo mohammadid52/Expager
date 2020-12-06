@@ -6,29 +6,34 @@ const userRef = firebase.firestore().collection('users');
 const getDetailsCollection = (uid, id) => userRef.doc(uid).collection('details').doc(id);
 
 const createWalletAccount = (data) => async (dispatch) => {
-  dispatch({ type: types.START_LOADING });
+  dispatch({ type: types.WALLET_LOADER_ON });
+  const { uid, details, walletBalanceValue } = data;
+  const { account } = details;
+
   try {
-    const detailsRef = getDetailsCollection(data.uid, data.detailsData.id);
+    const detailsRef = getDetailsCollection(uid, details.id);
 
     await detailsRef.update({
-      ...data.detailsData,
+      ...details,
       account: {
+        ...account,
         currency: 'INR',
-        walletBalance: Number(data.walletBalanceValue),
+        walletBalance: Number(walletBalanceValue),
         totalExpenses: 0,
         totalEarnings: 0,
         expenseList: [],
         earningsList: [],
+        createdAt: new Date(),
       },
     });
     dispatch({
       type: types.CREATE_WALLET,
-      msg: `account created with balance ₹ ${data.walletBalanceValue}`,
+      msg: `account created with balance ₹ ${walletBalanceValue}`,
     });
   } catch (error) {
     dispatch({ type: types.CREATE_WALLET_ERR, err: error.message });
   } finally {
-    dispatch({ type: types.START_LOADING });
+    dispatch({ type: types.WALLET_LOADER_OFF });
   }
 };
 
@@ -36,15 +41,14 @@ const addExpenseBalance = (data) => async (dispatch) => {
   dispatch({ type: types.WALLET_LOADER_ON });
 
   try {
-    const { detailsData, expenseData } = data;
-    const { expenseAmt } = expenseData;
-    const { account } = detailsData;
+    const { details, values, uid } = data;
+    const { account } = details;
 
-    const numberAmt = Number(expenseAmt);
+    const numberAmt = Number(values.expenseAmt);
 
-    const detailsRef = getDetailsCollection(data.uid, detailsData.id);
+    const detailsRef = getDetailsCollection(uid, details.id);
     await detailsRef.update({
-      ...detailsData,
+      ...details,
       account: {
         ...account,
         walletBalance: account.walletBalance - numberAmt,
@@ -52,13 +56,18 @@ const addExpenseBalance = (data) => async (dispatch) => {
         expenseList: [
           ...account.expenseList,
           {
-            ...expenseData,
+            title: values.title,
+            vendor: values.vendor,
+            createdAt: new Date(),
             expenseAmt: numberAmt,
           },
         ],
       },
     });
-    dispatch({ type: types.ADD_EXPENSE_TO_WALLET, msg: 'Expense Added' });
+    dispatch({
+      type: types.ADD_EXPENSE_TO_WALLET,
+      msg: `Expense Added. Current Balance: ${account.walletBalance}`,
+    });
   } catch (error) {
     dispatch({ type: types.ADD_EXPENSE_TO_WALLET_ERR, err: error.message });
   } finally {
@@ -66,17 +75,43 @@ const addExpenseBalance = (data) => async (dispatch) => {
   }
 };
 
-const setWalletDetails = (data) => async (dispatch) => {
-  dispatch({ type: types.SET_DETAILS, data });
-};
+const addEarnings = (data) => async (dispatch) => {
+  dispatch({ type: types.WALLET_LOADER_ON });
 
-const handleIsDataLoaded = (data) => async (dispatch) => {
-  console.log(data);
-  if (Object.keys(data).length) {
-    dispatch({ type: types.SET_IS_WALLET_LOADED_TRUE });
-  } else {
-    dispatch({ type: types.SET_IS_WALLET_LOADED_FALSE });
+  try {
+    const { details, values } = data;
+
+    const { account } = details;
+
+    const numberAmt = Number(values.earningsAmt);
+
+    const detailsRef = getDetailsCollection(data.uid, details.id);
+    await detailsRef.update({
+      ...details,
+      account: {
+        ...account,
+        walletBalance: account.walletBalance + numberAmt,
+        totalEarnings: account.totalEarnings + numberAmt,
+        earningsList: [
+          ...account.earningsList,
+          {
+            title: values.title,
+            vendor: values.vendor,
+            createdAt: new Date(),
+            earningsAmt: numberAmt,
+          },
+        ],
+      },
+    });
+    dispatch({
+      type: types.ADD_EARNINGS_TO_WALLET,
+      msg: `Earnings Added. Current Balance: ${account.walletBalance}`,
+    });
+  } catch (error) {
+    dispatch({ type: types.ADD_EARNINGS_TO_WALLET_ERR, err: error.message });
+  } finally {
+    dispatch({ type: types.WALLET_LOADER_OFF });
   }
 };
 
-export { createWalletAccount, addExpenseBalance, setWalletDetails, handleIsDataLoaded };
+export { createWalletAccount, addExpenseBalance, addEarnings };

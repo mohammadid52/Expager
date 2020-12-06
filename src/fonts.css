@@ -1,0 +1,48 @@
+@font-face {
+  font-family: primary;
+  src: url('./assets/fonts/Steradian\ Regular.otf');
+}
+@font-face {
+  font-family: medium;
+  src: url('./assets/fonts/Steradian\ Medium.otf');
+}
+@font-face {
+  font-family: light;
+  src: url('./assets/fonts/Steradian\ Light.otf');
+}
+@font-face {
+  font-family: bold;
+  src: url('./assets/fonts/Steradian\ Bold.otf');
+}
+@font-face {
+  font-family: GT Walsheim Pro;
+  src: url('./assets/fonts/GTWalsheimProRegular.ttf');
+}
+@font-face {
+  font-family: GT Walsheim Pro Bold;
+  src: url('./assets/fonts/GTWalsheimProBold.ttf');
+}
+@font-face {
+  font-family: Product Sans;
+  src: url('./assets/fonts/Product_Sans_Regular.ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: Product Sans;
+  src: url('./assets/fonts/Product_Sans_Bold.ttf');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: Product Sans;
+  src: url('./assets/fonts/Product_Sans_Italic.ttf');
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: Product Sans;
+  src: url('./assets/fonts/Product_Sans_Bold_Italic.ttf');
+  font-weight: 600;
+  font-style: italic;
+}

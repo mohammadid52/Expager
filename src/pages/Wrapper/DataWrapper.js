@@ -1,15 +1,22 @@
 import React from 'react';
 import { isEmpty } from 'lodash';
+import { useSelector } from 'react-redux';
 import { Loader } from '../../components';
+import { getAuth } from '../../helpers';
 
 const DataWrapper = ({ data, children }) => {
-  function loadData(details) {
-    if (isEmpty(details)) {
-      return false;
+  const { uid } = useSelector((state) => getAuth(state));
+
+  function loadData(detail) {
+    if (uid) {
+      if (isEmpty(detail)) {
+        return false;
+      }
+      return true;
     }
     return true;
   }
-  const isDataLoaded = loadData(data);
+  const isDataLoaded = loadData(data.details);
   if (!isDataLoaded) {
     return <Loader />;
   }

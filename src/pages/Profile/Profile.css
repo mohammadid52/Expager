@@ -13,89 +13,9 @@ button,
   width: 50%;
 }
 
-.left-profile .heading h1 {
-  font-size: 40px;
-  font-weight: 500;
-  letter-spacing: 1px;
-}
-.left-profile .heading p {
-  font-size: 17px;
-  font-weight: 400;
-}
-
-.left-profile .form {
-  margin-top: 5rem;
-}
-
-.form .form_card {
-  height: auto;
-  padding: 2rem;
-  margin-bottom: 2rem;
-}
-.form_card .form_field_container {
-  margin: 30px 0;
-  display: flex;
-}
-.form__field {
-  width: 100%;
-}
-.field {
-  width: 95%;
-}
-
-.left-profile .dummy {
-  height: 200px;
-}
-
-.form_field_container p {
-  color: #bbbbbb;
-  padding: 0.2rem;
-  font-size: 11px;
-}
-
-button:focus {
-  outline: none;
-}
-
-.form_field_container button {
-  height: 50px;
-  width: 50px;
-}
-
-.form_field_container .save-btn {
-  border: none;
-  border-radius: 50px 50px 10px 50px;
-  color: #fff;
-  font-size: 19px;
-  cursor: pointer;
-  background: linear-gradient(135deg, #fd6e6a, #ffc600);
-  box-shadow: 0 12px 15px -10px #f5ad42;
-  transition: var(--transition);
-}
-.form_field_container .save-btn:hover {
-  box-shadow: none;
-}
-
-.errorBorder,
-.errorBorder:focus {
-  border: 1px solid #ea2c62 !important;
-}
-.error-text {
-  color: #ea2c62 !important;
-}
-
-/* Left Side CSS */
+/* Right Side CSS */
 
 .right-profile {
   width: 50%;
   margin: 2rem;
-}
-.right-profile .earnings {
-  margin-bottom: 2rem;
-  height: 200px;
-}
-.right-profile .expenses {
-  margin-bottom: 2rem;
-  height: 48%;
-  overflow: scroll;
 }

@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import './Profile.css';
 import { useSelector } from 'react-redux';
 import LeftSide from './LeftSide';
 import RightSide from './RightSide';
-import { getOtherValues } from '../../helpers';
+import { getOtherValues, sidebarMinified } from '../../helpers';
+import './Profile.css';
 
 const Profile = ({ data }) => {
   const { isSidebarMin } = useSelector((state) => getOtherValues(state));
 
   return (
-    <section className={`${isSidebarMin ? 'maxified-content' : ''} profile content card`}>
+    <section className={`${sidebarMinified(isSidebarMin)} profile content`}>
       <LeftSide wallet={data} />
       <RightSide wallet={data} />
     </section>

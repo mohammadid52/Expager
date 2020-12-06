@@ -1,21 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { isEmpty } from 'lodash';
 
-import { getNoDataClass } from '../../helpers';
+import { NoData, QuickDataCards } from '../../components';
 
 const RightSide = ({ wallet }) => {
-  const { details } = wallet;
+  const {
+    details: { account },
+  } = wallet;
 
+  const { expenseList, earningsList } = account;
   return (
     <div className="right-profile">
-      <p className="small-heading">Your Earnings</p>
-      <div className={`card expenses ${getNoDataClass(details) ? 'no-data' : ''}`}>
-        {getNoDataClass(details) && <p>No Data</p>}
-      </div>
       <p className="small-heading">Your Expenses</p>
+      <div className="card quick-expenses">
+        {isEmpty(expenseList) ? <NoData /> : <QuickDataCards.Data account={account} />}
+      </div>
 
-      <div className={`card earnings ${getNoDataClass(details, true) ? 'no-data' : ''}`}>
-        {getNoDataClass(details, true) && <p>No Data</p>}
+      <p className="small-heading">Your Earnings</p>
+      <div className="card quick-earnings">
+        {isEmpty(earningsList) ? <NoData /> : <QuickDataCards.Data onEarnings account={account} />}
+      </div>
+
+      <p className="small-heading">Your Wallet</p>
+      <div className="card quick-wallet">
+        {isEmpty(earningsList) ? <NoData /> : <QuickDataCards.Wallet account={account} />}
       </div>
     </div>
   );

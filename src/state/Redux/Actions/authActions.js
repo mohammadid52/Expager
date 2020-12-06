@@ -13,9 +13,16 @@ const signUp = (creds) => async (dispatch) => {
       displayName: creds.username,
     });
     const { uid } = createdUser.user;
-    const details = await userRef.doc(uid).collection('details').add({
-      changesLeft: 10,
-    });
+    const details = await userRef
+      .doc(uid)
+      .collection('details')
+      .add({
+        changesLeft: 10,
+        account: {
+          expenseList: [],
+          earningsList: [],
+        },
+      });
     details.update({
       displayName: creds.username,
       id: details.id,

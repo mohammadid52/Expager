@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import React from 'react';
 import styled from 'styled-components';
 import { BsBarChart } from 'react-icons/bs';
@@ -9,6 +10,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { map } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { CgMenuMotion } from 'react-icons/cg';
+
 import { authActions, otherActions } from '../state/Redux';
 import { getOtherValues } from '../helpers';
 
@@ -89,6 +91,7 @@ const Sidebar = () => {
         >
           <CgMenuMotion size={iconSize} />
         </button>
+
         <Link to="/">
           <button type="button" className="logo">
             <div className="logo-icon">
@@ -164,7 +167,11 @@ const Wrapper = styled.div`
       transform: rotate(30deg);
     }
   }
+
   .sidebar-wrapper {
+    font-family: Product Sans;
+    font-weight: 400;
+    border: 1px solid #f4f5f9;
     transition: var(--transition-3);
     z-index: 999;
     width: var(--sidebar-width);

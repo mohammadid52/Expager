@@ -6,20 +6,6 @@
   box-sizing: border-box;
 }
 :root {
-  --clr-primary-1: #ff737a;
-  --clr-primary-2: #fa4659;
-  --clr-secondary-1: #e7f6ea;
-  --clr-secondary-2: #c6f1e7;
-  --clr-secondary-3: #11cbd7;
-  --clr-primary-3: #ff824d;
-  --clr-primary-4: #ff5722;
-  --clr-secondary-4: #eeeeee;
-  --clr-secondary-5: #00adb5;
-  --clr-dark-1: #303841;
-  --clr-other-1: #41292c;
-  --clr-other-2: #792359;
-  --clr-other-3: #d72483;
-  --clr-other-4: #fd3e81;
   --transition: all 0.2s ease;
   --transition-2: all 0.4s ease;
   --transition-3: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -40,30 +26,22 @@
   --sidebar-min-width: 80px;
   --height: 100vh;
   --font-clr: #4b4e56;
+  --secondary-font: Product Sans, 'sans-serif';
+  --input-font: GT Walsheim Pro, 'sans-serif';
+  --orange: #f5ad42;
+  --blue: #316cd3;
+  --light-text: #bbb;
+  --error-clr: #ea2c62;
+  --success-clr: #28df99;
 }
 
 body {
-  font-family: var(--primary-font);
+  font-family: var(--secondary-font);
+  font-weight: 400;
   background-color: #fff;
   color: var(--clr-grey-1);
   line-height: 1.5;
   font-size: 0.875rem;
-}
-@font-face {
-  font-family: primary;
-  src: url('./assets/fonts/Steradian\ Regular.otf');
-}
-@font-face {
-  font-family: medium;
-  src: url('./assets/fonts/Steradian\ Medium.otf');
-}
-@font-face {
-  font-family: light;
-  src: url('./assets/fonts/Steradian\ Light.otf');
-}
-@font-face {
-  font-family: bold;
-  src: url('./assets/fonts/Steradian\ Bold.otf');
 }
 ul {
   list-style-type: none;
@@ -133,6 +111,7 @@ button {
   background-color: #fff;
   border-radius: 20px;
   box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.12);
+  margin-bottom: 2rem;
 }
 .page-title {
   color: #14274e;
@@ -151,6 +130,7 @@ button {
   align-items: center;
   color: #bbb;
   text-align: center;
+  height: 100%;
 }
 .flex-center {
   display: flex;

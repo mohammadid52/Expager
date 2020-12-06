@@ -29,5 +29,6 @@ module.exports = {
     indent: 0,
     'implicit-arrow-linebreak ': 0,
     'operator-linebreak': 0,
+    'react/jsx-one-expression-per-line': 0,
   },
 };

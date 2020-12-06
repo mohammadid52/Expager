@@ -1,0 +1,38 @@
+.left-profile .activity {
+  height: 200px;
+  padding: 1rem;
+  place-items: center;
+  display: flex;
+}
+
+.activity-change {
+  font-size: 17px;
+  text-transform: capitalize;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.activity-change.weekly {
+  border-right: 1px solid #eee;
+}
+
+.activity-change p {
+  margin-bottom: 10px;
+  color: #aaa;
+  font-size: 15px;
+}
+.activity-change p:nth-child(2) span {
+  color: var(--success-clr);
+}
+
+.activity-change p span {
+  color: var(--error-clr);
+}
+
+.activity-change {
+  width: 50%;
+  padding: 1rem;
+}
+.activity-change p {
+  /* font-size: 17px; */
+}

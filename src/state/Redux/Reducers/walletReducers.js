@@ -1,4 +1,3 @@
-// import { toast } from 'react-toastify';
 import { NotificationManager } from 'react-notifications';
 import * as types from '../types';
 
@@ -13,11 +12,6 @@ export default (state = initialState, action) => {
         ...state,
         loading: true,
       };
-    case types.SET_DETAILS:
-      return {
-        ...state,
-        data: action.data,
-      };
     case types.WALLET_LOADER_OFF:
       return {
         ...state,
@@ -28,13 +22,19 @@ export default (state = initialState, action) => {
       NotificationManager.success(action.msg, 'Wallet', 3000);
       return state;
     case types.CREATE_WALLET_ERR:
-      NotificationManager.error(action.err, 'Wallet', 5000);
+      NotificationManager.error(action.err, 'Wallet Error', 10000);
       return state;
     case types.ADD_EXPENSE_TO_WALLET:
       NotificationManager.success(action.msg, 'Wallet', 3000);
       return state;
     case types.ADD_EXPENSE_TO_WALLET_ERR:
-      NotificationManager.error(action.err, 'Wallet', 5000);
+      NotificationManager.error(action.err, 'Wallet Error', 10000);
+      return state;
+    case types.ADD_EARNINGS_TO_WALLET:
+      NotificationManager.success(action.msg, 'Wallet', 3000);
+      return state;
+    case types.ADD_EARNINGS_TO_WALLET_ERR:
+      NotificationManager.error(action.err, 'Wallet Error', 10000);
       return state;
 
     default:

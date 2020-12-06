@@ -1,20 +1,11 @@
 /* eslint-disable no-use-before-define */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useFirestoreConnect } from 'react-redux-firebase';
 import { has, map, values } from 'lodash';
-import {
-  Dashboard,
-  SignUp,
-  Login,
-  Profile,
-  Expense,
-  Earnings,
-  History,
-  DataWrapper,
-} from '../pages';
-import { Sidebar, FloatingWallet } from '../components';
+import { Dashboard, SignUp, Login, Profile, Action, History, DataWrapper } from '../pages';
+import { Sidebar, UserDetails } from '../components';
 import { PrivateRoute } from '.';
 import { getAuth, getDetails } from '../helpers';
 
@@ -34,17 +25,17 @@ const AppRoute = () => {
 
   const detailsRawData = useSelector((state) => getDetails(state));
 
-  async function setDataToState() {
+  const setDataToState = useCallback(async () => {
     await map(values(detailsRawData), (d) => {
       setDetails(d);
     });
-  }
+  }, [detailsRawData]);
 
   useEffect(() => {
     setDataToState();
-  }, [detailsRawData, $details]);
+  }, [detailsRawData, $details, setDataToState]);
 
-  const isAccountCreated = has($details, 'account');
+  const isAccountCreated = has($details, 'account.walletBalance');
 
   const data = {
     details: $details,
@@ -68,12 +59,12 @@ const AppRoute = () => {
     {
       Route: PrivateRoute,
       path: '/earnings',
-      Component: Earnings,
+      Component: Action,
     },
     {
       Route: PrivateRoute,
       path: '/expenses',
-      Component: Expense,
+      Component: Action,
     },
     {
       Route: PrivateRoute,
@@ -101,9 +92,10 @@ const AppRoute = () => {
 
   return (
     <Router>
-      <DataWrapper data={$details}>
+      <DataWrapper data={data}>
         {uid && <Sidebar />}
-        {uid && isAccountCreated && <FloatingWallet data={data} />}
+        {/* <FloatingWallet data={data} /> */}
+        <UserDetails.FloatingImage profileImgId={$details.profileImgId} />
         <Switch>
           {map(appRoutes, (Route) => (
             <Route.Route

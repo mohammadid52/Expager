@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import Lottie from 'react-lottie';
-import loadingAnimation from '../assets/animation/loadingAnimation.json';
+import moneyAnimation from '../assets/animation/moneyAnimation.json';
 
 const defaultOptions = {
   loop: true,
   autoplay: true,
-  animationData: loadingAnimation,
+  animationData: moneyAnimation,
   rendererSettings: {
     preserveAspectRatio: 'xMidYMid slice',
   },
