@@ -80,12 +80,13 @@ const DailyChangesGraph = ({ data }) => {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line no-unused-vars
     const myChart = new Chart(lineChartRef.current, {
       type: 'line',
       data: dataSet,
       options,
     });
-  }, []);
+  }, [dataSet, lineChartRef, options]);
 
   const Content = (label) => (
     <div>
@@ -111,7 +112,6 @@ const DailyChangesGraph = ({ data }) => {
           <PopOver placement="bottom" content={() => Content(label)}>
             <button type="button" className={`${getToday() === label ? 'today' : ''}`}>
               <p>{label}</p>
-              {label === getToday() && <p>{getToday('D')}</p>}
             </button>
           </PopOver>
         ))}

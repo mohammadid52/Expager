@@ -99,7 +99,55 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 95%;
 }
-.history-actions .sort-data {
-  margin-right: 5rem;
+.search-data {
+  height: 70px;
+  width: 95%;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.search-input {
+  width: 70%;
+  border: none !important;
+  height: 40px;
+}
+
+.search-btn {
+  height: 40px;
+  font-family: var(--input-font);
+  box-shadow: 0 6px 15px -10px var(--blue);
+  width: 10%;
+  padding: 0.4rem;
+  background-color: var(--blue);
+  color: #fff;
+  transition: var(--transition);
+}
+.search-btn:hover,
+.search-btn:focus {
+  box-shadow: 2px 6px 20px -10px var(--blue);
+}
+
+.search-btn.clear {
+  background-color: var(--error-clr);
+  box-shadow: 0 6px 15px -10px var(--error-clr);
+}
+.search-btn.clear:hover,
+.search-btn.clear:focus {
+  box-shadow: 2px 6px 20px -10px var(--error-clr);
+}
+
+.sort-data .ant-select,
+.sort-data .ant-select-arrow {
+  color: #fff;
+  box-shadow: 2px 6px 20px -10px var(--blue);
+}
+.sort-data .ant-select-selector {
+  background-color: var(--blue) !important;
+  border-radius: 6px !important;
+  border: none !important;
 }

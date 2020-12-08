@@ -6,7 +6,7 @@
   width: 40px;
   border-radius: 50%;
   opacity: 0.8;
-  background-color: #316cd3;
+  background-color: var(--blue);
   color: #fff;
   display: flex;
   justify-content: center;
@@ -49,9 +49,9 @@
 .sidebar-wrapper .logo .logo-icon {
   height: 60px;
   width: 60px;
-  background-color: #f5ad42;
+  background-color: var(--orange);
   border-radius: 40px 40px 10px 40px;
-  box-shadow: 0 12px 15px -10px #f5ad42;
+  box-shadow: 0 12px 15px -10px var(--orange);
   display: grid;
   place-items: center;
 }
@@ -83,6 +83,7 @@
   position: relative;
   color: #323232;
   letter-spacing: 1px;
+  transition: var(--transition);
 }
 
 .sidebar-wrapper nav ul div {
@@ -134,9 +135,9 @@
 }
 
 .sidebar-selected-menu {
-  background-color: var(--sidebar-list-bg);
+  background-color: var(--blue);
   color: #fff !important;
-  box-shadow: 0 6px 20px -10px var(--sidebar-list-bg);
+  box-shadow: 0 6px 20px -10px var(--blue);
 }
 
 .not-selected:hover {

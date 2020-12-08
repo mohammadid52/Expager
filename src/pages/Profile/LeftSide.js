@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import './Profile.css';
 
 import { NoData, Activity, UserDetails } from '../../components';
-import { isDataEmpty } from '../../helpers';
 
 const LeftSide = ({ wallet }) => {
   const { details } = wallet;
 
   const { account } = details;
+
+  const { expenseList, earningsList } = account;
+
+  const noData = !expenseList.length && !earningsList.length;
 
   return (
     <div className="left-profile">
@@ -16,7 +19,7 @@ const LeftSide = ({ wallet }) => {
 
       <p className="small-heading">Activity</p>
       <div className="card activity">
-        {isDataEmpty(account, true) && isDataEmpty(account, false) ? (
+        {noData ? (
           <NoData />
         ) : (
           <>

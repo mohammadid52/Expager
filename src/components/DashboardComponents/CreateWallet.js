@@ -26,7 +26,6 @@ const CreateWallet = ({ data }) => {
   };
   return (
     <>
-      <p className="small-heading">Add Balance</p>
       <div className="card add-wallet-bal">
         <h6 className="add-bal-title">Create New Wallet Account</h6>
         <div className="form">

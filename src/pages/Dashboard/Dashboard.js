@@ -1,10 +1,12 @@
+/* eslint-disable react/prop-types */
 import './Dashboard.css';
 import '../../components/DashboardComponents/DashboardComp.css';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import moment from 'moment';
 import { getOtherValues, sidebarMinified, getToday } from '../../helpers';
-import { DashboardComponents } from '../../components';
+import { DashboardComponents, NoData } from '../../components';
 
 const Dashboard = ({ data }) => {
   const { isAccountCreated } = data;
@@ -12,6 +14,15 @@ const Dashboard = ({ data }) => {
 
   const todayDay = getToday('dddd');
   const todayDate = getToday('ll');
+
+  const {
+    details: { account },
+  } = data;
+
+  const { expenseList, earningsList } = account;
+
+  const firstExpOrIncDate = expenseList[0]?.createdAt || earningsList[0]?.createdAt;
+  const showGraphData = moment(firstExpOrIncDate.toDate()).format('ll') !== todayDate;
 
   return (
     <section className={`${sidebarMinified(isSidebarMin)} content`}>
@@ -29,7 +40,11 @@ const Dashboard = ({ data }) => {
           <DashboardComponents.CreateWallet data={data} />
         ) : (
           <div className={`card daily-card ${isSidebarMin ? 'full-size' : ''}`}>
-            <DashboardComponents.DailyChangesGraph data={data} />
+            {showGraphData ? (
+              <DashboardComponents.DailyChangesGraph data={data} />
+            ) : (
+              <NoData title="Graph will be unlock after 24 hourse of first transaction" />
+            )}
           </div>
         )}
       </div>
@@ -39,7 +54,7 @@ const Dashboard = ({ data }) => {
 
 Dashboard.propTypes = {
   data: PropTypes.shape({
-    isAccountCreated: PropTypes.any.isRequired,
+    isAccountCreated: PropTypes.bool.isRequired,
   }).isRequired,
 };
 

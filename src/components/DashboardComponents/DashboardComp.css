@@ -52,7 +52,7 @@
 .graph-labels button.today {
   background-color: #316cd3;
   color: #fff;
-  height: 50px;
+
   box-shadow: 1px 1px 10px rgba(49, 108, 211, 0.2);
 }
 .graph-labels button.today:hover {
@@ -72,8 +72,8 @@
 }
 
 .popover-data-earnings span {
-  color: var(--success-clr);
+  color: var(--blue);
 }
 .popover-data-expense span {
-  color: var(--error-clr);
+  color: var(--orange);
 }

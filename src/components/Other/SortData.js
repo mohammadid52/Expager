@@ -17,6 +17,8 @@ const SortData = () => {
       <Select defaultValue="Newest First" onChange={handleChange} style={{ width: 150 }}>
         <Option value="newest">Newest First</Option>
         <Option value="oldest">Oldest First</Option>
+        <Option value="highest">Highest Amount</Option>
+        <Option value="lowest">Lowest Amount</Option>
       </Select>
     </div>
   );

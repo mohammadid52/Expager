@@ -3,6 +3,7 @@ import * as types from '../types';
 
 const initialState = {
   loading: false,
+  searchText: '',
 };
 
 export default (state = initialState, action) => {
@@ -17,21 +18,23 @@ export default (state = initialState, action) => {
         ...state,
         loading: false,
       };
+    case types.SEARCH_TEXT:
+      return {
+        ...state,
+        searchText: action.searchText,
+      };
 
     case types.CREATE_WALLET:
-      NotificationManager.success(action.msg, 'Wallet', 3000);
       return state;
     case types.CREATE_WALLET_ERR:
       NotificationManager.error(action.err, 'Wallet Error', 10000);
       return state;
     case types.ADD_EXPENSE_TO_WALLET:
-      NotificationManager.success(action.msg, 'Wallet', 3000);
       return state;
     case types.ADD_EXPENSE_TO_WALLET_ERR:
       NotificationManager.error(action.err, 'Wallet Error', 10000);
       return state;
     case types.ADD_EARNINGS_TO_WALLET:
-      NotificationManager.success(action.msg, 'Wallet', 3000);
       return state;
     case types.ADD_EARNINGS_TO_WALLET_ERR:
       NotificationManager.error(action.err, 'Wallet Error', 10000);

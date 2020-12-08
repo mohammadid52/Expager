@@ -62,9 +62,6 @@
 
 /* Profile Picker Styles  */
 
-.profile-picker {
-}
-
 .profile-picker-container {
   display: flex;
   transition: var(--transition);
@@ -103,7 +100,14 @@
   top: 0;
   right: 40px;
   margin: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
 }
+
+.floating-img-container:hover {
+  opacity: 0.4;
+}
+
 .floating-img {
   height: 50px;
   width: 50px;
@@ -111,4 +115,23 @@
 
 .loading-img {
   opacity: 0.4 !important;
+}
+
+.floating-card-createdon {
+  font-size: 13px;
+  text-transform: capitalize;
+  color: var(--light-text);
+}
+
+.floating-card-wallet span {
+  font-weight: 500;
+  color: var(--success-clr);
+}
+.floating-card-expenses span {
+  font-weight: 500;
+  color: var(--orange);
+}
+.floating-card-earnings span {
+  font-weight: 500;
+  color: var(--blue);
 }

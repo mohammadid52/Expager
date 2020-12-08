@@ -1,7 +1,7 @@
 /* eslint-disable function-paren-newline */
 /* eslint-disable no-plusplus */
 /* eslint-disable implicit-arrow-linebreak */
-import { filter, get, includes, map, reduce, isEmpty, groupBy, keys, orderBy } from 'lodash';
+import { filter, get, includes, map, reduce, groupBy, keys, orderBy } from 'lodash';
 import moment from 'moment';
 
 export const getAuth = (state) => get(state, 'firebase.auth', {});
@@ -79,14 +79,6 @@ export const getTotalExpenseBalance = (data) =>
 export const getTotalEarningsBalance = (data) =>
   reduce(data, (prev, current) => prev + current.earningsAmt, 0);
 
-export const isDataEmpty = (data, _isExpense) => {
-  if (_isExpense) {
-    isEmpty(data.expenseList);
-  }
-
-  return isEmpty(data.earningsList);
-};
-
 export const getDataForGraphForExpense = (data) => {
   const dateWiseData = groupBy(
     data.map((d) => ({ ...d, createdAt: createdAt(d.createdAt) })),
@@ -136,5 +128,40 @@ export const getEarningsOfDay = (data, date) =>
 
 export const sortData = (data, value) => {
   const sortBy = value === 'oldest' ? 'asc' : 'desc';
+
   return orderBy(data, ['createdAt'], sortBy);
+};
+
+export const combinations = (data, numberAmt) => {
+  const lowerCaseTitle = data.title.toLowerCase();
+  const lowerCaseVendor = data.vendor.toLowerCase();
+  const titleInWords = lowerCaseTitle.split(' ');
+  const vendorInWords = lowerCaseVendor.split(' ');
+  const trimmed = (str) => str.replace(/\s+/g, '');
+  const titleInLetters = trimmed(lowerCaseTitle).split('');
+  const vendorInLetters = trimmed(lowerCaseTitle).split('');
+  const date = moment().format('ll').toLowerCase();
+  const splitDate = date.split(' ');
+  titleInWords.push(
+    lowerCaseTitle,
+    lowerCaseVendor,
+    ...vendorInWords,
+    ...splitDate,
+    ...titleInLetters,
+    ...vendorInLetters,
+  );
+  return [...titleInWords, numberAmt];
+};
+
+export const searchData = (data, searchText) => {
+  const filteredData = filter(
+    data,
+    (item) => item?.keywords?.indexOf(searchText.toLowerCase().trim()) > -1,
+  );
+
+  if (filteredData.length) {
+    return filteredData;
+  }
+
+  return false;
 };

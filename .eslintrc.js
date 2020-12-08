@@ -27,7 +27,7 @@ module.exports = {
     'react/jsx-wrap-multilines': 0,
     'react/forbid-prop-types': 0,
     indent: 0,
-    'implicit-arrow-linebreak ': 0,
+    'implicit-arrow-linebreak': 0,
     'operator-linebreak': 0,
     'react/jsx-one-expression-per-line': 0,
   },

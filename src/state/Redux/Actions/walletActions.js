@@ -1,5 +1,6 @@
 import * as types from '../types';
 import firebase from '../../../firebase';
+import { combinations } from '../../../helpers';
 
 const userRef = firebase.firestore().collection('users');
 
@@ -23,12 +24,10 @@ const createWalletAccount = (data) => async (dispatch) => {
         totalEarnings: 0,
         expenseList: [],
         earningsList: [],
-        createdAt: new Date(),
       },
     });
     dispatch({
       type: types.CREATE_WALLET,
-      msg: `account created with balance ₹ ${walletBalanceValue}`,
     });
   } catch (error) {
     dispatch({ type: types.CREATE_WALLET_ERR, err: error.message });
@@ -47,6 +46,7 @@ const addExpenseBalance = (data) => async (dispatch) => {
     const numberAmt = Number(values.expenseAmt);
 
     const detailsRef = getDetailsCollection(uid, details.id);
+    const keywordsCombinations = combinations(values, values.expenseAmt);
     await detailsRef.update({
       ...details,
       account: {
@@ -60,13 +60,13 @@ const addExpenseBalance = (data) => async (dispatch) => {
             vendor: values.vendor,
             createdAt: new Date(),
             expenseAmt: numberAmt,
+            keywords: keywordsCombinations,
           },
         ],
       },
     });
     dispatch({
       type: types.ADD_EXPENSE_TO_WALLET,
-      msg: `Expense Added. Current Balance: ${account.walletBalance}`,
     });
   } catch (error) {
     dispatch({ type: types.ADD_EXPENSE_TO_WALLET_ERR, err: error.message });
@@ -86,6 +86,8 @@ const addEarnings = (data) => async (dispatch) => {
     const numberAmt = Number(values.earningsAmt);
 
     const detailsRef = getDetailsCollection(data.uid, details.id);
+    const keywordsCombinations = combinations(values, values.earningsAmt);
+
     await detailsRef.update({
       ...details,
       account: {
@@ -99,13 +101,13 @@ const addEarnings = (data) => async (dispatch) => {
             vendor: values.vendor,
             createdAt: new Date(),
             earningsAmt: numberAmt,
+            keywords: keywordsCombinations,
           },
         ],
       },
     });
     dispatch({
       type: types.ADD_EARNINGS_TO_WALLET,
-      msg: `Earnings Added. Current Balance: ${account.walletBalance}`,
     });
   } catch (error) {
     dispatch({ type: types.ADD_EARNINGS_TO_WALLET_ERR, err: error.message });
@@ -114,4 +116,8 @@ const addEarnings = (data) => async (dispatch) => {
   }
 };
 
-export { createWalletAccount, addExpenseBalance, addEarnings };
+const handleSearchText = (searchText) => (dispatch) => {
+  dispatch({ type: types.SEARCH_TEXT, searchText });
+};
+
+export { createWalletAccount, addExpenseBalance, addEarnings, handleSearchText };

@@ -19,6 +19,7 @@ const signUp = (creds) => async (dispatch) => {
       .add({
         changesLeft: 10,
         account: {
+          createdAt: new Date(),
           expenseList: [],
           earningsList: [],
         },

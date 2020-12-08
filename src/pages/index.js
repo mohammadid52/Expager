@@ -6,6 +6,5 @@ import Profile from './Profile/Profile';
 import Action from './Actions/Action';
 import History from './History/History';
 import DataWrapper from './Wrapper/DataWrapper';
-import Error from './Error/Error';
 
-export { Login, SignUp, Dashboard, AuthWrapper, Profile, Action, History, DataWrapper, Error };
+export { Login, SignUp, Dashboard, AuthWrapper, Profile, Action, History, DataWrapper };
