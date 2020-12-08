@@ -10,6 +10,7 @@ import { DashboardComponents, NoData } from '../../components';
 
 const Dashboard = ({ data }) => {
   const { isAccountCreated } = data;
+
   const { isSidebarMin } = useSelector((state) => getOtherValues(state));
 
   const todayDay = getToday('dddd');
@@ -21,8 +22,14 @@ const Dashboard = ({ data }) => {
 
   const { expenseList, earningsList } = account;
 
-  const firstExpOrIncDate = expenseList[0]?.createdAt || earningsList[0]?.createdAt;
-  const showGraphData = moment(firstExpOrIncDate.toDate()).format('ll') !== todayDate;
+  const firstExp = expenseList[0]?.createdAt;
+  const firstEarn = earningsList[0]?.createdAt;
+
+  const firstExpOrIncDate = firstExp || firstEarn;
+
+  const showGraphData = firstExpOrIncDate
+    ? moment(firstExpOrIncDate?.toDate()).format('ll') !== todayDate
+    : false;
 
   return (
     <section className={`${sidebarMinified(isSidebarMin)} content`}>

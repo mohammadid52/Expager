@@ -1,8 +1,8 @@
 .left-profile .activity {
   height: 200px;
   padding: 1rem;
-  place-items: center;
   display: flex;
+  place-items: center;
 }
 
 .activity-change {

@@ -30,10 +30,14 @@ const History = ({ data }) => {
   const searchedData = searchData(allData, searchText);
   const dataList = searchText ? searchedData : allData;
 
+  const noData = !historyList.length;
+  const noDataText = 'There is no data to show';
+  const subtitle = 'Create a transaction to see data';
+  const noSearchedDataText = "Sorry, Can't find what you're looking for";
   return (
     <section className={`${sidebarMinified(isSidebarMin)} content`}>
       <h1 className="page-title">History</h1>
-      {dataList ? (
+      {dataList && !noData ? (
         <div className="card history">
           <div className="history-list-header">
             <div>Title</div>
@@ -54,7 +58,10 @@ const History = ({ data }) => {
         </div>
       ) : (
         <div className="card history">
-          <NoData title="Sorry, Can't find what you're looking for" />
+          <NoData
+            title={noData ? noDataText : noSearchedDataText}
+            subtitle={noData ? subtitle : ''}
+          />
         </div>
       )}
       <Search />
