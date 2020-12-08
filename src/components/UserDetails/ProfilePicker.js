@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { map, debounce } from 'lodash';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import AvatarList from '../../assets/png/avatarList';
+import AvatarList from '../../assets/svg/avatarList';
 import { otherActions, authActions } from '../../state/Redux';
 import { getOtherValues } from '../../helpers';
 

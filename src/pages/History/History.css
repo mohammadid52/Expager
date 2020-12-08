@@ -65,6 +65,9 @@
 }
 
 .history-guide div {
+  margin-right: 7px;
+}
+.history-guide.margin div {
   margin: 0.5rem 1rem;
 }
 .guide-expense div {
@@ -76,6 +79,7 @@
 }
 .history-guide p {
   font-size: 14px;
+  margin-bottom: 0;
 }
 .guide-expense,
 .guide-earnings {
@@ -89,4 +93,13 @@
   border-radius: 50%;
   background-color: var(--blue);
   display: flex;
+}
+
+.history-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.history-actions .sort-data {
+  margin-right: 5rem;
 }

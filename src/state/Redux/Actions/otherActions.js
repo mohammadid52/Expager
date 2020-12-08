@@ -42,4 +42,9 @@ const changeProfile = (data, profileImgId) => {
     profileImgId,
   });
 };
-export { changeUsername, changeProfile, switchSidebar };
+
+const sortBy = (value) => (dispatch) => {
+  dispatch({ type: types.SORT_BY, value });
+};
+
+export { changeUsername, changeProfile, switchSidebar, sortBy };

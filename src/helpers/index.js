@@ -1,7 +1,7 @@
 /* eslint-disable function-paren-newline */
 /* eslint-disable no-plusplus */
 /* eslint-disable implicit-arrow-linebreak */
-import { filter, get, includes, map, reduce, isEmpty } from 'lodash';
+import { filter, get, includes, map, reduce, isEmpty, groupBy, keys, orderBy } from 'lodash';
 import moment from 'moment';
 
 export const getAuth = (state) => get(state, 'firebase.auth', {});
@@ -36,12 +36,14 @@ export const getSubStringTitle = (title) => {
   }
   return `${title.substring(0, 20)}...`;
 };
-export const createdAt = (date) => moment(date.toDate()).format('ll');
 
-const getDates = (period) => {
+export const createdAt = (date) => moment(date.toDate()).format('ll');
+export const createdAtByDay = (date) => moment(date.toDate()).format('ddd');
+
+const getDates = (period, format = 'll') => {
   const arr = [];
   for (let i = 0; i <= period; i++) {
-    const date = moment().subtract(i, 'd').format('ll');
+    const date = moment().subtract(i, 'd').format(format);
     arr.push(date);
   }
   return arr;
@@ -77,10 +79,62 @@ export const getTotalExpenseBalance = (data) =>
 export const getTotalEarningsBalance = (data) =>
   reduce(data, (prev, current) => prev + current.earningsAmt, 0);
 
-export const isDataEmpty = (data, isExpense) => {
-  if (isExpense) {
+export const isDataEmpty = (data, _isExpense) => {
+  if (_isExpense) {
     isEmpty(data.expenseList);
   }
 
   return isEmpty(data.earningsList);
+};
+
+export const getDataForGraphForExpense = (data) => {
+  const dateWiseData = groupBy(
+    data.map((d) => ({ ...d, createdAt: createdAt(d.createdAt) })),
+    'createdAt',
+  );
+
+  const dateExpense = map(keys(dateWiseData), (key) => {
+    const items = dateWiseData[key];
+    const totalAmount = getTotalExpenseBalance(items);
+    return { date: key, value: totalAmount };
+  });
+
+  return dateExpense;
+};
+export const getDataForGraphForEarnings = (data) => {
+  const dateWiseData = groupBy(
+    data.map((d) => ({ ...d, createdAt: createdAtByDay(d.createdAt) })),
+    'createdAt',
+  );
+
+  const dateExpense = map(keys(dateWiseData), (key) => {
+    const items = dateWiseData[key];
+    const totalAmount = getTotalEarningsBalance(items);
+    return { date: key, value: totalAmount };
+  });
+
+  return dateExpense;
+};
+
+export const extractKeys = (data) => {
+  const dateWiseData = groupBy(
+    data.map((d) => ({ ...d, createdAt: createdAtByDay(d.createdAt) })),
+    'createdAt',
+  );
+
+  return keys(dateWiseData);
+};
+
+export const getToday = (format = 'ddd') => moment().format(format);
+
+const getFilteredList = (data, match) =>
+  filter(data, (item) => createdAtByDay(item.createdAt) === match);
+
+export const getExpenseOfDay = (data, date) => getTotalExpenseBalance(getFilteredList(data, date));
+export const getEarningsOfDay = (data, date) =>
+  getTotalEarningsBalance(getFilteredList(data, date));
+
+export const sortData = (data, value) => {
+  const sortBy = value === 'oldest' ? 'asc' : 'desc';
+  return orderBy(data, ['createdAt'], sortBy);
 };

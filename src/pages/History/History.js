@@ -1,24 +1,32 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { map, orderBy, has } from 'lodash';
+import { map, has } from 'lodash';
+import { Guide, SortData } from '../../components';
 
-import { getOtherValues, sidebarMinified, createdAt, getSubStringTitle } from '../../helpers';
+import {
+  getOtherValues,
+  sidebarMinified,
+  createdAt,
+  getSubStringTitle,
+  sortData,
+} from '../../helpers';
 import './History.css';
 
 const History = ({ data }) => {
-  const { isSidebarMin } = useSelector((state) => getOtherValues(state));
+  const { isSidebarMin, sortBy } = useSelector((state) => getOtherValues(state));
   const {
     details: { account },
   } = data;
   const { expenseList, earningsList } = account;
   const historyList = [...expenseList, ...earningsList];
-  const orderedList = orderBy(historyList, ['createdAt'], 'desc');
+
+  const list = sortData(historyList, sortBy);
 
   const isExpense = (value) => has(value, 'expenseAmt');
 
   return (
-    <Wrapper className={`${sidebarMinified(isSidebarMin)} content`}>
+    <section className={`${sidebarMinified(isSidebarMin)} content`}>
       <h1 className="page-title">History</h1>
       <div className="card history">
         <div className="history-list-header">
@@ -28,7 +36,7 @@ const History = ({ data }) => {
           <div>Amount</div>
         </div>
         <div className="history-list-container">
-          {map(orderedList, (value) => (
+          {map(list, (value) => (
             <div className={`history-list ${isExpense(value) ? 'history-list-expense' : ''}`}>
               <div>{getSubStringTitle(value.title)}</div>
               <div>{value.vendor}</div>
@@ -38,19 +46,16 @@ const History = ({ data }) => {
           ))}
         </div>
       </div>
-      <div className="history-guide">
-        <div className="guide-expense">
-          <div />
-          <p>Expense</p>
-        </div>
-        <div className="guide-earnings">
-          <div />
-          <p>Earnings</p>
-        </div>
+      <div className="history-actions">
+        <Guide text1="Expense" text2="Earnings" className="margin" />
+        <SortData />
       </div>
-    </Wrapper>
+    </section>
   );
 };
-const Wrapper = styled.section``;
+
+History.propTypes = {
+  data: PropTypes.any.isRequired,
+};
 
 export default History;

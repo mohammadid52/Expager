@@ -3,6 +3,7 @@ import React from 'react';
 
 const UserGreetings = ({ details }) => {
   const { displayName } = details;
+
   return (
     <div className="heading">
       <h1>

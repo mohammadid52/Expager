@@ -1,0 +1,79 @@
+/* Daily Activity Graph */
+
+.daily-card {
+  height: 500px;
+  width: 75%;
+}
+
+.card-header {
+  padding: 2rem;
+}
+
+.card-header p {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.graph {
+  height: 300px;
+  padding: 1rem 0;
+}
+
+.graph canvas {
+  width: 100% !important;
+  height: 100% !important;
+  filter: drop-shadow(0 13px 3px rgba(49, 108, 211, 0.2));
+}
+
+.graph-labels {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 2rem;
+}
+
+.graph-labels button {
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.12);
+  height: 30px;
+  width: 50px;
+  transition: var(--transition);
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.graph-labels button p {
+  margin: 0;
+  font-weight: 700;
+}
+
+.graph-labels button:hover {
+  box-shadow: 2px 3px 15px rgba(0, 0, 0, 0.16);
+}
+
+.graph-labels button.today {
+  background-color: #316cd3;
+  color: #fff;
+  height: 50px;
+  box-shadow: 1px 1px 10px rgba(49, 108, 211, 0.2);
+}
+.graph-labels button.today:hover {
+  box-shadow: 1px 1px 10px rgba(49, 108, 211, 0.6);
+}
+
+.ant-popover-inner {
+  border-radius: 10px !important;
+}
+.ant-popover-inner p {
+  margin-bottom: 0;
+}
+
+.popover-data-expense,
+.popover-data-earnings {
+  font-weight: 500;
+}
+
+.popover-data-earnings span {
+  color: var(--success-clr);
+}
+.popover-data-expense span {
+  color: var(--error-clr);
+}

@@ -4,6 +4,7 @@ import './QuickData.css';
 import { orderBy } from 'lodash';
 import ProgressCircle from './ProgressCircle';
 import { isExpense, getBalance } from '../../helpers';
+import { Guide } from '..';
 
 const QuickExpense = ({ account, onEarnings }) => {
   const { expenseList, earningsList } = account;
@@ -34,16 +35,10 @@ const QuickExpense = ({ account, onEarnings }) => {
           Your last {isExpense(null, null, !onEarnings)}: &#8377; {lastAmount}
         </p>
 
-        <div className="quick-data-guide">
-          <div className={`quick-data-guide-${!onEarnings ? 'earnings' : 'expense'}`}>
-            <div />
-            <p>{!onEarnings ? 'Expense' : 'Earnings'}</p>
-          </div>
-          <div className={`quick-data-guide-${onEarnings ? 'earnings' : 'expense'}`}>
-            <div />
-            <p>{onEarnings ? 'Expense' : 'Earnings'}</p>
-          </div>
-        </div>
+        <Guide
+          text1={!onEarnings ? 'Initial Bal' : 'Earnings'}
+          text2={onEarnings ? 'Earnings' : 'Expense'}
+        />
       </div>
     </div>
   );

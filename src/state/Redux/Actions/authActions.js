@@ -42,7 +42,6 @@ const login = (creds) => async (dispatch) => {
     dispatch({ type: types.LOGIN, msg: 'Login successfully' });
   } catch (error) {
     console.log(error);
-
     dispatch({ type: types.LOGIN_ERR, err: error.message });
   } finally {
     dispatch({ type: types.STOP_LOADING });

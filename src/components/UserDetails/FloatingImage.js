@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { filter } from 'lodash';
 import { useSelector } from 'react-redux';
-import avatarList from '../../assets/png/avatarList';
+import avatarList from '../../assets/svg/avatarList';
 import { getLocalAuthState } from '../../helpers';
 
 const FloatingImage = ({ profileImgId }) => {

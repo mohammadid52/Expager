@@ -12,7 +12,7 @@ const LeftSide = ({ wallet }) => {
 
   return (
     <div className="left-profile">
-      <UserDetails.UserGreetings details={details} />
+      <UserDetails.UserGreetings details={wallet} />
 
       <p className="small-heading">Activity</p>
       <div className="card activity">

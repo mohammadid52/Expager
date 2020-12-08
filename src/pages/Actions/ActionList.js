@@ -20,16 +20,16 @@ const ExpenseList = ({ wallet, onExpense }) => {
         <div>Date</div>
         <div>Amount</div>
       </div>
-      <div className="transaction-list-container">
+      <ul className="transaction-list-container">
         {map(orderedList, (value) => (
-          <div className="transaction-list">
+          <li className="transaction-list">
             <div>{getSubStringTitle(value.title)}</div>
             <div>{value.vendor}</div>
             <div>{createdAt(value.createdAt)}</div>
             <div>₹ {value.expenseAmt || value.earningsAmt}</div>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };

@@ -5,13 +5,28 @@ import { Redirect, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getAuth } from '../helpers';
 
-const PrivateRoute = ({ isPublic, children, ...rest }) => {
+const PrivateRoute = ({ path, isPublic, children, ...rest }) => {
   const { isLoaded, uid, isEmpty } = useSelector((state) => getAuth(state));
   const isUser = isLoaded && uid && !isEmpty;
+
+  const onPublic = (isuser) => {
+    if (isuser) {
+      return <Redirect to="/" />;
+    }
+    return children;
+  };
+  const onPrivate = (isuser) => {
+    if (isuser) {
+      return children;
+    }
+
+    return <Redirect to="/login" />;
+  };
+
   if (isPublic) {
-    return <Route {...rest} render={() => (isUser ? <Redirect to="/" /> : children)} />;
+    return <Route {...rest} render={() => onPublic(isUser)} />;
   }
-  return <Route {...rest} render={() => (isUser ? children : <Redirect to="/login" />)} />;
+  return <Route {...rest} render={() => onPrivate(isUser)} />;
 };
 
 PrivateRoute.defaultProps = {

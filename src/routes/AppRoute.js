@@ -1,10 +1,9 @@
-/* eslint-disable no-use-before-define */
 import React, { useEffect, useState, useCallback } from 'react';
-import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useFirestoreConnect } from 'react-redux-firebase';
 import { has, map, values } from 'lodash';
-import { Dashboard, SignUp, Login, Profile, Action, History, DataWrapper } from '../pages';
+import { Dashboard, SignUp, Login, Profile, Action, History, DataWrapper, Error } from '../pages';
 import { Sidebar, UserDetails } from '../components';
 import { PrivateRoute } from '.';
 import { getAuth, getDetails } from '../helpers';
@@ -88,23 +87,28 @@ const AppRoute = () => {
       Component: SignUp,
       isPublic: true,
     },
+    {
+      Route,
+      path: '*',
+      Component: Error,
+      isPublic: true,
+    },
   ];
 
   return (
     <Router>
       <DataWrapper data={data}>
         {uid && <Sidebar />}
-        {/* <FloatingWallet data={data} /> */}
-        <UserDetails.FloatingImage profileImgId={$details.profileImgId} />
+        {uid && <UserDetails.FloatingImage profileImgId={$details.profileImgId} />}
         <Switch>
-          {map(appRoutes, (Route) => (
-            <Route.Route
-              path={Route.path}
-              exact={has(Route, 'exact')}
-              isPublic={has(Route, 'isPublic')}
+          {map(appRoutes, (_Route) => (
+            <_Route.Route
+              path={_Route.path}
+              exact={has(_Route, 'exact')}
+              isPublic={has(_Route, 'isPublic')}
             >
-              <Route.Component data={data} />
-            </Route.Route>
+              <_Route.Component data={data} />
+            </_Route.Route>
           ))}
         </Switch>
       </DataWrapper>

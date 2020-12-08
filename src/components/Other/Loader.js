@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Lottie from 'react-lottie';
-import moneyAnimation from '../assets/animation/moneyAnimation.json';
+import moneyAnimation from '../../assets/animation/moneyAnimation.json';
 
 const defaultOptions = {
   loop: true,

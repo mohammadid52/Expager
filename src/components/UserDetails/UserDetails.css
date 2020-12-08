@@ -40,17 +40,16 @@
 }
 
 .form_field_container .save-btn {
-  border: none;
-  border-radius: 50px 50px 10px 50px;
-  color: #fff;
+  border-radius: 6px;
+  color: var(--blue);
   font-size: 19px;
   cursor: pointer;
-  background: #f5ad42;
-  box-shadow: 0 12px 15px -10px #f5ad42;
+  background: #fff;
   transition: var(--transition);
+  box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.12);
 }
 .form_field_container .save-btn:hover {
-  box-shadow: none;
+  box-shadow: 4px 5px 13px rgba(0, 0, 0, 0.14);
 }
 
 .errorBorder,
@@ -69,10 +68,12 @@
 .profile-picker-container {
   display: flex;
   transition: var(--transition);
+  justify-content: space-between;
+  align-items: center;
 }
 .profile-picker-container img {
   height: 60px;
-  margin-right: 1.1rem;
+  margin: 0 0.5rem;
   cursor: pointer;
 }
 

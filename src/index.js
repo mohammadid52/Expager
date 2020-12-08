@@ -11,8 +11,8 @@ import { rrfConfig } from './config';
 import firebase from './firebase';
 import { AuthWrapper } from './pages';
 import 'react-notifications/lib/notifications.css';
-
 import './components/UserDetails/UserDetails.css';
+import 'antd/dist/antd.css';
 
 const rrfProps = {
   firebase,
