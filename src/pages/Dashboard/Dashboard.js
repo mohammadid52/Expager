@@ -50,7 +50,7 @@ const Dashboard = ({ data }) => {
             {showGraphData ? (
               <DashboardComponents.DailyChangesGraph data={data} />
             ) : (
-              <NoData title="Graph will be unlock after 24 hourse of first transaction" />
+              <NoData title="Graph will be unlock after 24 hours of first transaction" />
             )}
           </div>
         )}
